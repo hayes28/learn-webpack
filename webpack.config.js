@@ -10,6 +10,12 @@ module.exports = {
         filename: "[name].bundle.js",
         path: path.resolve(__dirname, "deploy"),
     },
+    devServer: {
+        static: {
+            directory: path.resolve(__dirname, 'deploy')
+        },
+        open: true
+    },
     module: {
         rules: [
             {
@@ -19,8 +25,8 @@ module.exports = {
                     loader: "babel-loader",
                     options: {
                         presets: ["@babel/preset-env"],
-                    }
-                }
+                    },
+                },
             },
             {
                 test: /\.css$/,
@@ -30,7 +36,7 @@ module.exports = {
                 test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
                 type: "asset/resource",
             },
-        ]
+        ],
     },
     plugins: [
         new HtmlWebpackPlugin({
